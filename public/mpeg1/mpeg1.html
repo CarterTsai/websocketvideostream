@@ -1,45 +1,57 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta name="viewport" content="width=320, initial-scale=1"/>
-	<title>mpeg1 streaming</title>
-	<style type="text/css">
-		body {
-			background: #333;
-			text-align: center;
-			margin-top: 10%;
-		}
-		#videoCanvas {
-			/* Always stretch the canvas to 640x480, regardless of its
+    <meta name="viewport" content="width=320, initial-scale=1" />
+    <title>mpeg1 streaming</title>
+    <style type="text/css">
+        body {
+            background: #333;
+            text-align: center;
+            margin-top: 10%;
+        }
+        
+        #videoCanvas {
+            /* Always stretch the canvas to 640x480, regardless of its
 			internal size. */
-			width: 640px;
-			height: 480px;
-		}
-	</style>
+            width: 320px;
+            height: 480px;
+        }
+    </style>
 </head>
+
 <body>
-	<!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
+    <!-- The Canvas size specified here is the "initial" internal resolution. jsmpeg will
 		change this internal resolution to whatever the source provides. The size the
 		canvas is displayed on the website is dictated by the CSS style.
 	-->
-	<canvas id="videoCanvas" width="640" height="480">
+    <canvas id="videoCanvas" width="320" height="480"></canvas>
+    <!-- 
 		<p>
 			Please use a browser that supports the Canvas Element, like
 			<a href="http://www.google.com/chrome">Chrome</a>,
 			<a href="http://www.mozilla.com/firefox/">Firefox</a>,
 			<a href="http://www.apple.com/safari/">Safari</a> or Internet Explorer 10
 		</p>
-	</canvas>
-	<script type="text/javascript" src="jsmpg.js"></script>
-	<script type="text/javascript">
-		//alert(window.location.host);
-		var strhost = "ws://" + window.location.host + "/wsmpeg";
-		//'ws://172.16.64.92:8080/ws'
-		// Setup the WebSocket connection and start the player
-		var client = new WebSocket( strhost );
-   
-		var canvas = document.getElementById('videoCanvas');
-		var player = new jsmpeg(client, {canvas: canvas, autoplay: true});		
-	</script>
+	</canvas> -->
+    <script type="text/javascript" src="/mpeg1/jsmpg.js"></script>
+    <div class="jsmpeg" data-autoplay="true" data-url="ws://localhost:8080/wsmpeg"></div>
+    <!-- <script type="text/javascript">
+        //alert(window.location.host);
+        var strhost = "ws://" + window.location.host + "/wsmpeg";
+        //'ws://172.16.64.92:8080/ws'
+        // Setup the WebSocket connection and start the player
+        //var client = new WebSocket(strhost);
+
+        var canvas = document.getElementById('videoCanvas');
+        var player = new JSMpeg.Player(strhost, {
+            canvas: canvas,
+            //loop: true,
+            autoplay: true
+        });
+
+        player.play();
+    </script> -->
 </body>
+
 </html>
